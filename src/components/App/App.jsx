@@ -5,7 +5,7 @@ import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
 import prevContacts from '../../data/prevContacts';
 import { nanoid } from 'nanoid';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import toast, { Toaster } from 'react-hot-toast';
 
 export class App extends Component {
   state = {
@@ -32,12 +32,14 @@ export class App extends Component {
     );
 
     if (isAlreadyExist) {
-      Notify.warning(`${newContact.name} is already in contacts`, {
-        width: '360px',
-        position: 'center-top',
-        distance: '110px',
-        borderRadius: '0px',
-        fontSize: '16px',
+      toast.error(`${newContact.name} is already in contacts`, {
+        duration: 3000,
+        style: {
+          marginTop: '36px',
+          width: '360px',
+          padding: '16px',
+          background: '#ffd500',
+        },
       });
       return;
     }
@@ -79,6 +81,7 @@ export class App extends Component {
           <NoContacts>No contacts in phone book</NoContacts>
         )}
         <GlobalStyle />
+        <Toaster />
       </Container>
     );
   }
