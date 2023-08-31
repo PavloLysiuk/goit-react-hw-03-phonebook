@@ -13,6 +13,19 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts !== null && storedContacts !== undefined) {
+      this.setState({ contacts: JSON.parse(storedContacts) });
+    }
+  }
+
   addContact = newContact => {
     const isAlreadyExist = this.state.contacts.some(
       ({ name }) => name.toLowerCase() === newContact.name.toLowerCase()
