@@ -44,6 +44,17 @@ export class App extends Component {
       return;
     }
 
+    toast.success(`${newContact.name} is added to contacts`, {
+      duration: 3000,
+      style: {
+        marginTop: '36px',
+        width: '360px',
+        padding: '16px',
+        color: 'white',
+        background: '#5cc400',
+      },
+    });
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), ...newContact }],
     }));
