@@ -33,11 +33,7 @@ export class App extends Component {
 
     if (isAlreadyExist) {
       toast.error(`${newContact.name} is already in contacts`, {
-        duration: 3000,
         style: {
-          marginTop: '36px',
-          width: '360px',
-          padding: '16px',
           background: '#ffd500',
         },
       });
@@ -45,11 +41,7 @@ export class App extends Component {
     }
 
     toast.success(`${newContact.name} is added to contacts`, {
-      duration: 3000,
       style: {
-        marginTop: '36px',
-        width: '360px',
-        padding: '16px',
         color: 'white',
         background: '#5cc400',
       },
@@ -82,11 +74,7 @@ export class App extends Component {
       }),
       () => {
         toast.success(`${deletedContact.name} is deleted from contacts`, {
-          duration: 3000,
           style: {
-            marginTop: '36px',
-            width: '360px',
-            padding: '16px',
             color: 'white',
             background: '#ff8e31',
           },
@@ -110,7 +98,19 @@ export class App extends Component {
           <NoContacts>No contacts in phone book</NoContacts>
         )}
         <GlobalStyle />
-        <Toaster />
+        <Toaster
+          gutter={4}
+          containerStyle={{
+            top: 53,
+          }}
+          toastOptions={{
+            duration: 3000,
+            style: {
+              width: '360px',
+              padding: '16px',
+            },
+          }}
+        />
       </Container>
     );
   }
