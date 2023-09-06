@@ -72,9 +72,27 @@ export class App extends Component {
   };
 
   handleDeleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
+    const deletedContact = this.state.contacts.find(
+      contact => contact.id === id
+    );
+
+    this.setState(
+      prevState => ({
+        contacts: prevState.contacts.filter(contact => contact.id !== id),
+      }),
+      () => {
+        toast.success(`${deletedContact.name} is deleted from contacts`, {
+          duration: 3000,
+          style: {
+            marginTop: '36px',
+            width: '360px',
+            padding: '16px',
+            color: 'white',
+            background: '#ff8e31',
+          },
+        });
+      }
+    );
   };
 
   render() {
